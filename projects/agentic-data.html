@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Data Processing &middot; Hai Lan</title>
+<meta name="description" content="Traceable, executable pipelines for natural-language data tasks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="proj-shell">
+
+  <div class="nav">
+    <a class="home" href="../index.html">Hai&nbsp;Lan</a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html">Projects</a>
+      <a href="../publications.html">Publications</a>
+    </nav>
+  </div>
+
+  <div class="proj-grid">
+
+    <aside class="proj-side">
+      <p class="side-label">Projects</p>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <hr class="side-sep">
+        <li><a href="data-organisation.html">Data Organisation</a></li>
+        <li><a href="query-optimisation.html">Query Optimisation</a></li>
+        <li><a href="agentic-data.html" aria-current="page">Agentic Data Processing</a></li>
+        <li><a href="industrial.html">Industrial Systems</a></li>
+      </ul>
+    </aside>
+
+    <main class="proj-main">
+      <p class="eyebrow">Project Direction</p>
+      <h1 class="title">Agentic Data&nbsp;Processing</h1>
+
+      <div class="cat-intro">
+        <p>Emerging agentic AI workflows create a new resilience challenge:
+        natural-language tasks must be decomposed, grounded, executed, and verified
+        over heterogeneous data. My work builds systems that transform such tasks
+        into <strong>explicit, traceable, and executable pipelines</strong> using
+        structured knowledge representation, hybrid planning, self-correction, and
+        parallel execution &mdash; making AI-driven workflows more scalable,
+        auditable, robust under ambiguity, and cost-controlled.</p>
+      </div>
+
+      <section class="topic">
+        <h2>Agentic Data Orchestration for Scholarly Corpora</h2>
+
+        <article class="paper">
+          <p class="ptitle">
+            AgenticScholar: Agentic Data Management with Pipeline Orchestration for Scholarly Corpora
+            <span class="plinks">
+              (<a href="https://arxiv.org/pdf/2603.13774" target="_blank" rel="noopener">SIGMOD'26</a>)
+              (<a href="https://agenticscholar.github.io" target="_blank" rel="noopener">System Prototype</a>)
+            </span>
+          </p>
+          <p class="pdesc" style="color:var(--ink-faint);font-size:0.9rem;margin-bottom:8px;">Hai Lan, Tingting Wang, Zhifeng Bao, Guoliang Li, Daomin Ji, Ge Lee, Feng Luo, Zi Huang, Hailang Qiu, Gang Hua</p>
+          <p class="pdesc">
+            AgenticScholar addresses the growing friction in scholarly analysis,
+            where evidence is distributed across modalities such as text, tables,
+            figures, code snippets, and citation and bibliographic context, and
+            where questions naturally evolve from retrieval into multi-step
+            synthesis, comparison, trend tracing, and idea exploration. It treats
+            this interaction as compiling natural-language requests into
+            evidence-grounded analysis workflows represented as explicit executable
+            DAG plans, rather than isolated invocations of a retriever or
+            summarizer. In practice, it supports a spectrum of scholarly queries,
+            including constraint-based paper retrieval; single-paper extraction and
+            structured summarization of problem, method, and experimental details;
+            cross-paper synthesis with ranking and inconsistency checking; and
+            higher-level knowledge discovery such as research trend analysis,
+            milestone paper selection, and uncovering under-explored
+            problem&ndash;method combinations. Its agentic core unifies a
+            structure-aware, multi-modal scholarly knowledge base with hybrid
+            planning and operator-based execution, while keeping the process
+            inspectable via materialized plans, intermediate results, and data
+            lineage, and supporting new workflows by composing and extending a
+            library of reusable operators.
+          </p>
+          <div class="media">
+            <div class="figure"><img src="https://baozhifeng.net/img/projects/data-orchestration-for-ai/agenticscholar.png" alt="AgenticScholar system overview"></div>
+            <div class="video"><iframe src="https://www.youtube.com/embed/rRzr36fhqHQ" allowfullscreen></iframe></div>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>&copy; 2026 Hai Lan</span>
+    <span>Hosted on GitHub Pages</span>
+  </footer>
+
+</div>
+</body>
+</html>

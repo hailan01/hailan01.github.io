@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Organisation &middot; Hai Lan</title>
+<meta name="description" content="Learned indexes and data quality for resilient data organisation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="proj-shell">
+
+  <div class="nav">
+    <a class="home" href="../index.html">Hai&nbsp;Lan</a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html">Projects</a>
+      <a href="../publications.html">Publications</a>
+    </nav>
+  </div>
+
+  <div class="proj-grid">
+
+    <aside class="proj-side">
+      <p class="side-label">Projects</p>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <hr class="side-sep">
+        <li><a href="data-organisation.html" aria-current="page">Data Organisation</a></li>
+        <li><a href="query-optimisation.html">Query Optimisation</a></li>
+        <li><a href="agentic-data.html">Agentic Data Processing</a></li>
+        <li><a href="industrial.html">Industrial Systems</a></li>
+      </ul>
+    </aside>
+
+    <main class="proj-main">
+      <p class="eyebrow">Project Direction</p>
+      <h1 class="title">Data&nbsp;Organisation</h1>
+
+      <div class="cat-intro">
+        <p>Resilient data infrastructure begins with data that can be indexed, stored,
+        updated, and completed reliably. My work here advances <strong>learned
+        indexes</strong> for disk-resident, updatable systems, and
+        <strong>missing-value imputation</strong> for tabular data lakes &mdash;
+        making data organisation more scalable, robust to changing and incomplete
+        data, and usable for trustworthy downstream analytics.</p>
+      </div>
+
+      <section class="topic">
+        <h2>Learned Index</h2>
+
+        <article class="paper">
+          <p class="ptitle">
+            A Fully On-disk Updatable Learned Index
+            <span class="plinks">
+              (<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10598156" target="_blank" rel="noopener">ICDE'24</a>)
+              (<a href="https://github.com/rmitbggroup/AULID" target="_blank" rel="noopener">Code</a>)
+            </span>
+          </p>
+          <p class="pdesc" style="color:var(--ink-faint);font-size:0.9rem;margin-bottom:8px;">Hai Lan, Zhifeng Bao, J. Shane Culpepper, Renata Borovica-Gajic, Yu Dong</p>
+          <p class="pdesc">
+            AULID proposes a fully on-disk updatable learned index designed
+            specifically for disk-based database systems, where disk I/O dominates
+            performance. It introduces a disk-efficient structure that reduces I/O
+            cost by minimizing model traversal and optimizing node layouts for disk
+            access. AULID supports efficient lookups, inserts, and updates while
+            maintaining high accuracy and low storage overhead. Experiments show
+            that AULID significantly improves lookup and update performance compared
+            to traditional B+-trees and prior learned indexes in disk-resident
+            settings.
+          </p>
+          <div class="media">
+            <!-- To self-host: download from https://baozhifeng.net/img/projects/ai4db/aulid.png to assets/figures/aulid.png, then change src below to ../assets/figures/aulid.png -->
+            <div class="figure"><img src="https://baozhifeng.net/img/projects/ai4db/aulid.png" alt="AULID architecture"></div>
+            <div class="video"><iframe src="https://www.youtube.com/embed/2oGjArTKOm0" allowfullscreen></iframe></div>
+          </div>
+        </article>
+
+        <article class="paper">
+          <p class="ptitle">
+            Updatable Learned Indexes Meet Disk-Resident DBMS &mdash; From Evaluations to Design Choices
+            <span class="plinks">
+              (<a href="https://dl.acm.org/doi/pdf/10.1145/3589284" target="_blank" rel="noopener">SIGMOD'23</a>)
+              (<a href="https://github.com/rmitbggroup/LearnedIndexDiskExp" target="_blank" rel="noopener">Code</a>)
+            </span>
+          </p>
+          <p class="pdesc" style="color:var(--ink-faint);font-size:0.9rem;margin-bottom:8px;">Hai Lan, Zhifeng Bao, J. Shane Culpepper, Renata Borovica-Gajic</p>
+          <p class="pdesc">
+            This paper studies whether updatable learned indexes are effective in
+            disk-resident DBMS environments, where most real-world databases
+            operate. It implements and evaluates several state-of-the-art learned
+            indexes (e.g., PGM, LIPP, ALEX) and compares them against traditional
+            B+-trees under various workloads. The results show that while learned
+            indexes can outperform B+-trees in specific workloads, B+-trees remain
+            highly competitive overall. Based on extensive analysis, the paper
+            identifies key limitations of learned indexes on disk and proposes
+            design principles to guide the development of efficient on-disk learned
+            indexes.
+          </p>
+          <div class="media">
+            <div class="figure"><img src="https://baozhifeng.net/img/projects/ai4db/on_disk_exp.png" alt="On-disk learned index evaluation"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="topic">
+        <h2>Missing Value Imputation</h2>
+
+        <article class="paper">
+          <p class="ptitle">
+            Missing Value Imputation in Tabular Data Lakes Unleashed: A Hybrid Approach
+            <span class="plinks">
+              (<a href="https://link.springer.com/article/10.1007/s00778-025-00957-1" target="_blank" rel="noopener">VLDBJ'26</a>)
+              (<a href="https://github.com/JrJessyLuo/mv_imputation_datalake" target="_blank" rel="noopener">System Prototype</a>)
+            </span>
+          </p>
+          <p class="pdesc" style="color:var(--ink-faint);font-size:0.9rem;margin-bottom:8px;">Feng Luo, Hai Lan, Hui Luo, Zhifeng Bao, J. Shane Culpepper, Shazia Sadiq, Xiaoli Wang</p>
+          <p class="pdesc">
+            Missing values in tabular data lakes can severely impact data analysis
+            and diminish the performance in downstream applications. Ideally, a
+            robust imputation strategy should properly take three aspects of variety
+            into consideration: source of imputed value, the types of tables
+            involved, and the data types of the missing value. However, the existing
+            estimation-based or search-based imputation approaches do not
+            effectively account for all three aspects of variety. To address this
+            gap, we propose CESID, a hybrid method that effectively and efficiently
+            combines the strengths of both search-based and estimation-based
+            approaches, enabling its robustness in dealing with the three varieties.
+            Extensive experiments conducted on three data lakes demonstrate that
+            CESID effectively and efficiently addresses the missing value problem.
+          </p>
+          <div class="media">
+            <div class="figure"><img src="https://baozhifeng.net/img/projects/data-orchestration-for-ai/cesid.png" alt="CESID overview"></div>
+            <div class="video"><iframe src="https://www.youtube.com/embed/3I-A8s6V90E" allowfullscreen></iframe></div>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>&copy; 2026 Hai Lan</span>
+    <span>Hosted on GitHub Pages</span>
+  </footer>
+
+</div>
+</body>
+</html>

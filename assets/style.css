@@ -1,0 +1,840 @@
+/* ============================================================
+   Shared stylesheet — academic personal site
+   Visual language: serious, scholarly, paper-like.
+   White background, dark serif text, classic blue links.
+   ============================================================ */
+
+:root {
+  /* Palette: white paper, near-black ink, classic academic blue */
+  --paper:      #ffffff;
+  --paper-2:    #f4f4f2;
+  --ink:        #111111;
+  --ink-soft:   #2b2b2b;
+  --ink-faint:  #6b6b6b;
+  --accent:     #1f4e8c;   /* classic academic blue */
+  --rule:       #d8d6d2;
+
+  --maxw: 720px;          /* readable column for prose pages */
+
+  /* Typography: serif body (scholarly), tighter sans for nav/tags */
+  --serif: "Source Serif 4", "Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* remove the warm radial overlay */
+body::before { display: none; }
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 28px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- nav (minimal, same on every page) ---------- */
+.nav {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 36px 0 0;
+}
+.nav .home {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav .home:hover { color: var(--accent); }
+.nav nav { display: flex; gap: 24px; font-size: 0.92rem; }
+.nav nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.18s ease;
+}
+.nav nav a::after {
+  content: ""; position: absolute; left: 0; bottom: -1px;
+  width: 0; height: 1.5px; background: var(--accent);
+  transition: width 0.22s ease;
+}
+.nav nav a:hover,
+.nav nav a[aria-current="page"] { color: var(--accent); }
+.nav nav a:hover::after,
+.nav nav a[aria-current="page"]::after { width: 100%; }
+
+/* ---------- main: vertically generous ---------- */
+main {
+  flex: 1;
+  padding-top: 90px;
+  animation: rise 0.65s cubic-bezier(0.2,0.7,0.2,1) both;
+}
+
+.eyebrow {
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+h1.title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.3rem, 6vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+/* body prose — the single focus of each page */
+.prose p {
+  font-size: 1.06rem;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+  max-width: 60ch;
+}
+.prose p.lead { color: var(--ink); font-size: 1.12rem; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154,59,27,0.32);
+  transition: border-color 0.18s ease;
+}
+.prose a:hover { border-color: var(--accent); }
+
+/* contact line on home */
+.links {
+  display: flex; flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.95rem;
+  margin-top: 30px;
+}
+.links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- projects overview: category list ---------- */
+.cat-list { list-style: none; padding: 0; margin: 8px 0 0; }
+.cat-list li {
+  border-top: 1px solid var(--rule);
+  padding: 30px 0;
+}
+.cat-list li:last-child { border-bottom: 1px solid var(--rule); }
+.cat-list a.cat-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: color 0.18s ease, gap 0.2s ease;
+}
+.cat-list a.cat-title:hover { color: var(--accent); gap: 16px; }
+.cat-list a.cat-title .arrow { color: var(--accent); font-weight: 400; }
+.cat-list .cat-blurb {
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+/* ---------- category page: project entries ---------- */
+.entry {
+  border-top: 1px solid var(--rule);
+  padding: 34px 0;
+}
+.entry:last-of-type { border-bottom: 1px solid var(--rule); }
+.entry h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+}
+.entry p { color: var(--ink-soft); margin: 0 0 16px; max-width: 60ch; }
+
+.resources { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+.resource {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.88rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 7px 13px;
+  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+}
+.resource:hover { border-color: var(--accent); background: #fff; transform: translateY(-1px); }
+.resource .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+
+/* ---------- publications ---------- */
+.pubs { list-style: none; padding: 0; margin: 8px 0 0; }
+.pubs li { padding: 20px 0; border-top: 1px solid var(--rule); }
+.pubs li:last-child { border-bottom: 1px solid var(--rule); }
+.pub-title { color: var(--ink); font-weight: 500; font-size: 1.04rem; }
+.pub-meta { font-size: 0.9rem; color: var(--ink-faint); margin-top: 4px; }
+.pub-meta .venue { color: var(--accent); font-style: italic; }
+.pub-meta a { color: var(--ink-faint); border-bottom: 1px solid var(--rule); text-decoration: none; }
+.pub-meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- intro paragraph above a list ---------- */
+.intro { margin: 0 0 36px; }
+.intro p { color: var(--ink-soft); max-width: 60ch; }
+
+/* ---------- back link ---------- */
+.back {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.9rem; color: var(--ink-soft);
+  text-decoration: none; margin-top: 54px;
+}
+.back:hover { color: var(--accent); }
+
+/* ---------- footer ---------- */
+footer {
+  padding: 40px 0 44px;
+  margin-top: 70px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.84rem;
+  color: var(--ink-faint);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+/* ---------- motion ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  main { padding-top: 60px; }
+  .nav { padding-top: 26px; }
+  .nav nav { gap: 18px; }
+}
+
+/* ============================================================
+   Homepage — identity block, biography, interests, education
+   ============================================================ */
+
+.id-block {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  border: 1px solid var(--rule);
+}
+.id-text h1.title { margin: 0 0 6px; }
+.role {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+.id-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.92rem;
+}
+.id-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.id-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+.bio { margin-top: 30px; }
+.bio h2,
+.meta-block h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  margin: 40px 0 16px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+.bio h2:first-child { border-top: none; padding-top: 0; margin-top: 8px; }
+.bio p {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  max-width: 64ch;
+}
+.bio p.lead { color: var(--ink); }
+.bio strong { color: var(--ink); font-weight: 600; }
+.bio a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154,59,27,0.32);
+}
+.bio a:hover { border-color: var(--accent); }
+
+.bullets { margin: 0; padding-left: 1.1em; }
+.bullets li { color: var(--ink-soft); margin-bottom: 6px; }
+
+.edu { list-style: none; padding: 0; margin: 0; }
+.edu li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.edu li:first-child { border-top: 1px solid var(--rule); }
+.edu .degree { color: var(--ink); }
+.edu .inst { color: var(--ink-faint); font-size: 0.92rem; }
+
+@media (max-width: 560px) {
+  .id-block { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .avatar { width: 104px; height: 104px; }
+}
+
+/* ============================================================
+   Project category page — Bao style: long intro + topics +
+   paper entries with links, figure & video placeholders
+   ============================================================ */
+
+.cat-intro p {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  max-width: 64ch;
+}
+.cat-intro strong { color: var(--ink); font-weight: 600; }
+.cat-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(154,59,27,0.32); }
+
+.topic {
+  margin-top: 8px;
+  padding-top: 30px;
+  border-top: 1px solid var(--rule);
+}
+.topic > h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+}
+
+.paper { margin: 0 0 34px; }
+.paper:last-child { margin-bottom: 0; }
+.paper .ptitle {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1.04rem;
+  line-height: 1.45;
+  margin: 0 0 8px;
+}
+.paper .plinks { display: inline; }
+.paper .plinks a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(154,59,27,0.3);
+}
+.paper .plinks a:hover { border-color: var(--accent); }
+.paper .ptags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 8px 0 12px;
+}
+.paper .ptag {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.paper .pdesc {
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  max-width: 64ch;
+}
+
+/* media: figure + video placeholders */
+.media { margin: 14px 0 0; }
+.figure {
+  display: block;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.figure img { display: block; width: 100%; height: auto; }
+.figure.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 140px;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+.video {
+  position: relative;
+  margin-top: 12px;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-faint); font-size: 0.85rem;
+}
+
+/* contents sidebar (sticky on wide screens) */
+.cat-layout { display: block; }
+@media (min-width: 920px) {
+  .cat-layout {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 48px;
+    align-items: start;
+  }
+  .toc {
+    position: sticky;
+    top: 40px;
+    order: 2;
+    font-size: 0.88rem;
+  }
+  .cat-body { order: 1; min-width: 0; }
+}
+.toc { margin-top: 40px; }
+.toc .toc-label {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 12px;
+}
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { margin-bottom: 9px; }
+.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.16s ease;
+}
+.toc a:hover { color: var(--accent); }
+@media (max-width: 919px) { .toc { display: none; } }
+
+/* ============================================================
+   Projects section — persistent left sidebar (Bao style)
+   Wider shell so the two columns fill the page.
+   ============================================================ */
+
+.proj-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.proj-shell .nav { padding-left: 0; padding-right: 0; max-width: none; }
+
+.proj-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  padding-top: 70px;
+  align-items: start;
+}
+
+/* left sidebar */
+.proj-side {
+  position: sticky;
+  top: 40px;
+}
+.proj-side .side-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 16px;
+}
+.proj-side ul { list-style: none; padding: 0; margin: 0; }
+.proj-side li { margin-bottom: 2px; }
+.proj-side a {
+  display: block;
+  padding: 7px 12px;
+  margin-left: -12px;
+  border-radius: 7px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.proj-side a:hover { background: var(--paper-2); color: var(--accent); }
+.proj-side a[aria-current="page"] {
+  background: var(--paper-2);
+  color: var(--accent);
+  font-weight: 500;
+}
+.proj-side .side-sep {
+  height: 1px; background: var(--rule);
+  margin: 14px 0; border: 0;
+}
+
+/* right column content */
+.proj-main { min-width: 0; animation: rise 0.6s cubic-bezier(0.2,0.7,0.2,1) both; }
+.proj-main .eyebrow { margin-top: 0; }
+
+/* on narrow screens: sidebar becomes a horizontal strip on top */
+@media (max-width: 820px) {
+  .proj-grid { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; }
+  .proj-side { position: static; }
+  .proj-side ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  .proj-side li { margin: 0; }
+  .proj-side .side-sep { display: none; }
+  .proj-side a { margin-left: 0; }
+}
+
+/* let category/overview right-column prose use the available width */
+.proj-main .cat-intro p,
+.proj-main .pdesc,
+.proj-main .cat-blurb { max-width: 72ch; }
+.proj-main .figure.placeholder { min-height: 180px; }
+.proj-main .video { max-width: 640px; }
+
+/* ============================================================
+   Homepage — two-column (left photo/identity card, right bio)
+   Mirrors the Projects shell width so pages feel consistent.
+   ============================================================ */
+
+.home-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 64px;
+  padding-top: 72px;
+  align-items: start;
+}
+
+/* left identity card (sticky on scroll) */
+.home-card {
+  position: sticky;
+  top: 40px;
+}
+.home-card .photo {
+  width: 100%;
+  max-width: 230px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  display: block;
+  margin-bottom: 22px;
+}
+.home-card .card-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 8px;
+}
+.home-card .card-role {
+  color: var(--ink);
+  font-size: 0.98rem;
+  margin: 0 0 2px;
+}
+.home-card .card-affil {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0 0 20px;
+}
+.home-card .card-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+.home-card .card-links li { margin-bottom: 9px; }
+.home-card .card-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.16s ease;
+}
+.home-card .card-links a::before {
+  content: "→";
+  color: var(--accent);
+  opacity: 0;
+  margin-right: 0;
+  transition: opacity 0.16s ease, margin-right 0.16s ease;
+}
+.home-card .card-links a:hover { color: var(--accent); }
+.home-card .card-links a:hover::before { opacity: 1; margin-right: 7px; }
+
+/* right content column */
+.home-main { min-width: 0; animation: rise 0.6s cubic-bezier(0.2,0.7,0.2,1) both; }
+.home-main .bio { margin-top: 0; }
+.home-main .bio h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.home-main .bio p,
+.home-main .cat-intro p { max-width: 70ch; }
+
+/* responsive: stack card on top */
+@media (max-width: 820px) {
+  .home-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 44px; }
+  .home-card { position: static; display: flex; flex-direction: column; }
+  .home-card .photo { max-width: 160px; }
+}
+
+/* ---- homepage card: icon row ---- */
+.card-icons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+  margin-top: 4px;
+}
+.card-icons a {
+  color: var(--ink-soft);
+  display: inline-flex;
+  transition: color 0.16s ease, transform 0.16s ease;
+}
+.card-icons a:hover { color: var(--accent); transform: translateY(-2px); }
+.card-icons svg { width: 22px; height: 22px; display: block; }
+
+/* ---- homepage photo: show placeholder until avatar.jpg exists ---- */
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 230px;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 22px;
+}
+.photo-wrap .photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  display: block;
+  margin: 0;
+}
+.photo-wrap .photo-ph {
+  display: none;
+  position: absolute; inset: 0;
+  align-items: center; justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border: 1px dashed var(--rule);
+  border-radius: 14px;
+  background: var(--paper-2);
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.photo-wrap .photo-ph small { font-size: 0.74rem; opacity: 0.8; }
+.photo-wrap.photo-empty .photo-ph { display: flex; }
+@media (max-width: 820px) {
+  .photo-wrap { max-width: 160px; }
+}
+
+/* ============================================================
+   Overrides for serious / scholarly look
+   ============================================================ */
+
+/* Headings: keep serif but make them feel tighter and less decorative */
+h1.title,
+h1.name,
+.bio h2,
+.meta-block h2,
+.entry h2,
+.topic > h2,
+.cat-list a.cat-title,
+.home-card .card-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.005em;   /* less aggressive negative tracking */
+}
+h1.title, h1.name {
+  font-size: clamp(2rem, 4.2vw, 2.6rem);   /* smaller, more restrained */
+  line-height: 1.15;
+}
+.bio h2, .meta-block h2 { font-size: 1.2rem; }
+.cat-list a.cat-title { font-size: 1.2rem; }
+.entry h2, .topic > h2 { font-size: 1.15rem; }
+
+/* Eyebrow: less colorful, more like a journal kicker */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
+}
+
+/* Nav: small, structural, sans-serif */
+.nav .home { font-family: var(--serif); font-weight: 600; font-size: 1rem; }
+.nav nav { font-family: var(--sans); font-size: 0.88rem; }
+.nav nav a { color: var(--ink-soft); }
+.nav nav a::after { background: var(--accent); }
+.nav nav a:hover,
+.nav nav a[aria-current="page"] { color: var(--accent); }
+
+/* Body prose color: darker, less soft */
+.prose p, .bio p, .cat-intro p, .pdesc, .cat-blurb,
+.home-main .bio p { color: var(--ink-soft); }
+.bio p.lead, .prose p.lead { color: var(--ink); }
+
+/* Links: classic academic blue, plain underline */
+.prose a, .bio a, .cat-intro a, .pubs .pub-meta a, .pub-meta a,
+.paper .plinks a, p a.inline, a.inline, .links a, .id-links a,
+.intro p a, .cat-list a.cat-title:hover {
+  color: var(--accent);
+}
+.prose a, .bio a, p a.inline, a.inline,
+.intro p a, .pubs .pub-meta a, .paper .plinks a, .id-links a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  border-bottom: none;
+}
+.prose a:hover, .bio a:hover, p a.inline:hover, .intro p a:hover,
+.pubs .pub-meta a:hover, .paper .plinks a:hover { color: var(--ink); }
+
+/* Identity card on home: replace soft border-radius with subtle, hairline divider */
+.home-card .photo,
+.photo-wrap .photo,
+.photo-wrap .photo-ph {
+  border-radius: 2px;        /* almost square — feels less marketing-y */
+}
+.home-card .card-icons {
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+.card-icons a { color: var(--ink-soft); }
+.card-icons a:hover { color: var(--accent); transform: none; }   /* kill the hover-lift */
+.card-name { letter-spacing: -0.005em; }
+.card-role, .card-affil { font-family: var(--serif); }
+
+/* Project category list arrow: keep blue but no gap-grow on hover */
+.cat-list a.cat-title { color: var(--ink); }
+.cat-list a.cat-title:hover { color: var(--accent); gap: 10px; }
+.cat-list a.cat-title .arrow { color: var(--accent); }
+
+/* Paper resource pills -> plain inline links (more like a journal) */
+.resources { gap: 14px; }
+.resource {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+.resource:hover {
+  background: transparent;
+  border: none;
+  transform: none;
+  color: var(--ink);
+}
+.resource .dot { display: none; }
+
+/* Tags: smaller, sans, no pill background — more "metadata" feel */
+.tag, .ptag {
+  font-family: var(--sans);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 1px 7px;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+/* Figure/video placeholders: thinner, flatter */
+.figure, .video {
+  border-radius: 2px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+
+/* Publications: tighter, more list-like */
+.pubs li { padding: 14px 0; }
+.pub-title { font-family: var(--serif); font-weight: 600; font-size: 1rem; color: var(--ink); }
+.pub-meta { font-family: var(--sans); color: var(--ink-faint); font-size: 0.86rem; }
+.pub-meta .venue { color: var(--ink-soft); font-style: italic; }
+
+/* Sidebar in projects: less playful */
+.proj-side a { border-radius: 2px; font-family: var(--sans); }
+.proj-side a[aria-current="page"] { background: var(--paper-2); color: var(--accent); }
+.proj-side .side-label { font-family: var(--sans); }
+
+/* Edu list: cleaner */
+.edu li { border-bottom: 1px solid var(--rule); }
+.edu .degree, .edu .inst { font-family: var(--serif); }
+.edu .inst { color: var(--ink-faint); }
+
+/* Bullets and bio: serif and dark */
+.bullets li { font-family: var(--serif); color: var(--ink-soft); }
+
+/* Footer */
+footer { font-family: var(--sans); }
+
+/* Kill the rise/fade animation everywhere — feels more sober */
+main, section, .lede, .home-main, .proj-main, .id-block { animation: none !important; }
+
+/* Section dividers: slightly heavier rule so it reads as a real horizontal line, not a hairline */
+.section-rule, hr.section-rule { border-top: 1px solid var(--rule); }
+
+/* Small detail: roman small caps for the eyebrow looks scholarly */
+.eyebrow { text-transform: uppercase; }
+
+/* ---- topic sub-heading: visually differentiated from main h1 and paper titles ---- */
+.proj-main .topic > h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 22px;
+}
